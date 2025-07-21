@@ -14,7 +14,7 @@ ROUTER_ADDRESSES = {
     "ethereum": "0x66a9893cc07d91d95644aedd05d03f95e1dba8af",
     "base": "0x6ff5693b99212da76ad316178a184ab56d299b43",  # Replace with Base UniswapV4 router address
     "optimism": "0x851116d9223fabed8e56c0e6b8ad0c31d98b3507",  # Replace with Optimism UniswapV4 router address
-    "polygon": "0x1095692A6237d83C6a72F3F5eFEdb9A670C49223",  # Replace with Polygon UniswapV4 router address
+    "polygon": "0x1095692a6237d83c6a72f3f5efedb9a670c49223",  # Replace with Polygon UniswapV4 router address
     "arbitrum": "0xa51afafe0263b40edaef0df8781ea9aa03e381a3",  # Replace with Arbitrum UniswapV4 router address
 }
 
@@ -78,7 +78,6 @@ class Uniswap:
 
     def get_chain_from_provider(self, provider_url):
         """Detects the blockchain network from the provider URL."""
-        return "polygon"
         if "base" in provider_url:
             return "base"
         elif "optimism" in provider_url:
@@ -329,9 +328,6 @@ class Uniswap:
                 )
             )
             encoded_data = v4_transaction.get("data")
-            transaction_value = v4_transaction.get(
-                "value", 0
-            )  # Usa .get para segurança
 
         else:
             raise ValueError("Unsupported pool_version. Use 'v3' or 'v4'.")
