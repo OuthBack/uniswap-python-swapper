@@ -35,7 +35,6 @@ ERC20_ABI = json.loads(ERC20_ABI_JSON)
 class Uniswap:
     def __init__(self, wallet_address, private_key, provider, web3):
         self.w3 = web3
-        self.w3.middleware_onion.inject(ExtraDataToPOAMiddleware, layer=0)
         self.wallet_address = wallet_address
         self.private_key = private_key
         self.account = Account.from_key(private_key)
@@ -82,6 +81,7 @@ class Uniswap:
         elif "optimism" in provider_url:
             return "optimism"
         elif "polygon" in provider_url:
+            self.w3.middleware_onion.inject(ExtraDataToPOAMiddleware, layer=0)
             return "polygon"
         elif "arbitrum" in provider_url:
             return "arbitrum"
